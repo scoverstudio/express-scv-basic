@@ -3,7 +3,7 @@ const path = require("path");
 
 const app = express();
 
-const imagePath = "~/public/error-404.png";
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use((req, res, next) => {
   res.show = (name) => {
@@ -15,8 +15,6 @@ app.use((req, res, next) => {
 app.use("/user", (req, res, next) => {
   res.show("forbidden.html");
 });
-
-app.use(express.static(path.join(__dirname, "/public")));
 
 app.get(["/", "/home"], (req, res) => {
   res.show("index.html");
